@@ -1,0 +1,49 @@
+<%= form_with(model: @donation, url: donations_path, local: true) do |form| %>
+  <%= render 'error_messages', donation: @donation %>
+  <h1>ユーザー名を入力</h1>
+  <div class="field">
+    <%= form.label :name, "名前（全角）" %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="field">
+    <%= form.label :name_reading, "フリカナ（全角カタカナ）" %>
+    <%= form.text_field :name_reading %>
+  </div>
+  <div class="field">
+    <%= form.label :nickname, "ニックネーム（半角英数）" %>
+    <%= form.text_field :nickname %>
+  </div>
+
+  <h1>住所を入力</h1>
+  <div class="field">
+    <%= form.label :postal_code, "郵便番号（ハイフンを含む）" %>
+    <%= form.text_field :postal_code %>
+  </div>
+   <div class="field">
+   <%= form.label :prefecture, "都道府県" %>
+   <%= form.collection_select :prefecture, Prefecture.all, :id, :name, {include_blank: "---"} %>
+ </div>
+  <div class="field">
+    <%= form.label :city, "市町村（任意）" %>
+    <%= form.text_field :city %>
+  </div>
+  <div class="field">
+    <%= form.label :house_number, "番地（任意）" %>
+    <%= form.text_field :house_number %>
+  </div>
+  <div class="field">
+    <%= form.label :building_name, "建物名（任意）" %>
+    <%= form.text_field :building_name %>
+  </div>
+
+  <h1>寄付金</h1>
+  <div class="field">
+    <%= form.label :price, "いくら寄付しますか？（1〜1000000円、半角）" %>
+    <%= form.text_field :price %>
+    <%= "円" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "寄付する" %>
+  </div>
+<% end %>
